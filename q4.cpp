@@ -1,23 +1,28 @@
-//max subarray sum
-
 #include <iostream>
 using namespace std;
 
-int maxSubarraySum(int arr[],int n){
-    int currentSum=arr[0];
-    int maxSoFar=arr[0];
+int max_subarr(int arr[], int size) {
+    int currSum = arr[0];
+    int maxSum = arr[0];
 
-    for(int i=1;i<n;i++){
-        currentSum=max(arr[i],currentSum+arr[i]);
-        maxSoFar=max(currentSum,maxSoFar);
+    for (int i = 1; i < size; i++) {
+        if (currSum + arr[i] > arr[i])
+            currSum = currSum + arr[i];
+        else
+            currSum = arr[i];
+
+        if (currSum > maxSum)
+            maxSum = currSum;
     }
-    return maxSoFar;
+
+    return maxSum;
 }
 
-int main(){
-    int arr[] = {-2, -3, 1, 5, -6 ,-2, -5, 6};
-    int n=sizeof(arr)/sizeof(arr[0]);
+int main() {
+    int arr[8] = {-2, -3, 1, 5, -6, -2, -5, 6};
+    int size = 8;
 
-    cout<<"Maximum subarray sum= " << maxSubarraySum(arr, n);
+    cout << "Maximum subarray sum = " << max_subarr(arr, size);
+
     return 0;
 }
