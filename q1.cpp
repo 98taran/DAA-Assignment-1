@@ -1,37 +1,37 @@
-//binary search
-
 #include <iostream>
 using namespace std;
 
-int binarySearch(int arr[],int l,int h,int key){
-    if(l==h){
-        if(arr[l==key])
-            return l;
-        else
-            return 0;
+int binary_srch(int arr[], int low, int high, int key) {
+    if (low > high) {
+        return -1;  
     }
-    else{
-        int mid=(l+h)/2;
-        if(key==arr[mid])
-            return mid;
-        if(key<arr[mid])
-            return binarySearch(arr,l,mid-1,key);
-        else
-            return binarySearch(arr,mid+1,h,key);
+
+    int mid = (low + high) / 2;
+
+    if (arr[mid] == key) {
+        return mid;
+    }
+    else if (key < arr[mid]) {
+        return binary_srch(arr, low, mid - 1, key);
+    }
+    else {
+        return binary_srch(arr, mid + 1, high, key);
     }
 }
 
-int main(){
-    int arr[]={2,5,8,12,16,10,1,45,72,91};
-    int l=0;
-    int h=(sizeof(arr)/sizeof(arr[0]))-1;
-    int key=23;
-    int result=binarySearch(arr,l,h,key);
+int main() {
+    int arr[7] = {2, 4, 6, 9, 13, 17, 20};
 
-    if(result!=-1)
-        cout<<"Element found at index "<<result;
+    int key = 13;
+    int low = 0;
+    int high = 6;
+
+    int result = binary_srch(arr, low, high, key);
+
+    if (result != -1)
+        cout << "Element found at index " << result;
     else
-        cout<<"Element not found";
+        cout << "Element not found";
 
     return 0;
 }
